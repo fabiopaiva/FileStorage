@@ -1,0 +1,23 @@
+<?php
+$form = $this->form;
+
+$form->setAttribute(
+    'action',
+    $this->url(
+        'document',
+        array(
+            'controller'=>'document', 
+            'action' => 'create'
+        )
+    )
+); 
+
+$form->prepare();
+
+echo $this->form()->openTag($form);
+
+echo $this->formRow($form->get('content'));
+
+echo $this->formSubmit($form->get('submit'));
+
+echo $this->form()->closeTag();
