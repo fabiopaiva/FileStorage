@@ -1,4 +1,4 @@
-Gravando arquivos no banco de dados com ZF2 2 e Doctrine
+Gravando arquivos no banco de dados com ZF2 e Doctrine
 ==================
 
 ## Descrição
