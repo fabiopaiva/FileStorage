@@ -214,38 +214,46 @@ return array(
     // Controllers in this module
     'controllers' => array(
         'invokables' => array(
-            'FileStorage\Controller\Document' => 'FileStorage\Controller\DocumentController'
+            'Document' => 'FileStorage\Controller\DocumentController'
         ),
     ),
 
     // Routes for this module
     'router' => array(
         'routes' => array(
-            // Documents
+             // Documents
             'document' => array(
                 'type' => 'Segment',
                 'options' => array(
-                   'route'    => '/document[/:action]',
+                   'route'    => '/document[/:action][/]',
                         'constraints' => array(
                             'action'=> '[a-zA-Z][a-zA-Z0-9_-]*',
-                        ),
+                    ),
                     'defaults' => array(
-                        'controller' => 'FileStorage\Controller\Document',
+                        'controller' => 'Document',
                         'action'     => 'index',
                     ),
                 ),
             ),
             // Download
-            'download'  => array(
+            'download' => array(
                 'type' => 'Segment',
                 'options' => array(
-                   'route'    => '/download[/:id]',
-                        'constraints' => array(
-                            'action'=> '[0-9]+',
-                        ),
+                    'route'    => '/download[/:id][/]',
                     'defaults' => array(
-                        'controller' => 'FileStorage\Controller\Document',
+                        'controller' => 'Document',
                         'action'     => 'download',
+                    ),
+                ),
+            ),
+            // Delete a document
+            'delete' => array(
+                'type' => 'Segment',
+                'options' => array(
+                    'route'    => '/delete[/:id][/]',
+                    'defaults' => array(
+                        'controller' => 'Document',
+                        'action'     => 'delete',
                     ),
                 ),
             ),
@@ -652,6 +660,9 @@ class DocumentController extends AbstractActionController
         return $paginator;
     }
     
+    /**
+     * Download of a document
+     */
     public function downloadAction() 
     {
         $id = (int) $this->params()->fromRoute('id');
@@ -662,8 +673,31 @@ class DocumentController extends AbstractActionController
 
         return $document->download($this->getResponse());
     }
-             
     
+    /**
+     * Remove a document through your id
+     */
+    public function deleteAction()
+    {
+        $id = (int) $this->params()->fromRoute('id');
+        
+         $document = $this->getEntityManager()
+            ->getRepository('FileStorage\Entity\Document')
+            ->find($id);
+
+        if ($document != null) {
+            $this->getEntityManager()->remove($document);
+            $this->getEntityManager()->flush();
+        }
+        
+        return $this->redirect()->toRoute('document');
+    }
+             
+    /**
+     * Store a file into database.
+     *
+     * @return array
+     */
     public function createAction()
     {
         $form = new DocumentForm();
@@ -735,7 +769,7 @@ echo $this->form()->closeTag();
 		<div class="span12 conteudo">
 			<div class="dados">
 		
-				<table class="table table-striped table-bordered" id="dados">
+				<table class="table table-striped table-bordered">
 				    <thead>
 				        <tr>
 							<th class="span1">ID</th>
@@ -751,8 +785,12 @@ echo $this->form()->closeTag();
 				            <td>
 				                <a href="<?php echo $this->url('download', array(
                                         'action'=>'download', 
-                                        'id' => $document->getId()
-                                ));?>">Download</a>
+                                        'id' => $document->getId(),
+                                ));?>">Download</a> | 
+                                <a href="<?php echo $this->url('delete', array(
+                                        'action'=>'delete', 
+                                        'id' => $document->getId(),
+                                ));?>">Delete</a>
                             </td>
 				        </tr>
 				        <?php endforeach; ?>
@@ -763,6 +801,8 @@ echo $this->form()->closeTag();
 		</div>
 	</div>
 </div>
+
+<a href="<?php echo $this->url('document', array('action'=>'create'));?>" class="btn-primary btn">New</a>
 <?php endif; ?>
 ```
 

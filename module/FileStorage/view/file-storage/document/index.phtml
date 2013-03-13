@@ -17,11 +17,15 @@
 				        <tr>
 				            <td><?php echo $document->getId(); ?></td>
 				            <td><?php echo $document->getName(); ?></td>
-				            <td>
+                            <td>
 				                <a href="<?php echo $this->url('download', array(
                                         'action'=>'download', 
-                                        'id' => $document->getId()
-                                ));?>">Download</a>
+                                        'id' => $document->getId(),
+                                ));?>">Download</a> | 
+                                <a href="<?php echo $this->url('delete', array(
+                                        'action'=>'delete', 
+                                        'id' => $document->getId(),
+                                ));?>">Delete</a>
                             </td>
 				        </tr>
 				        <?php endforeach; ?>
@@ -32,4 +36,6 @@
 		</div>
 	</div>
 </div>
+
+<a href="<?php echo $this->url('document', array('action'=>'create'));?>" class="btn-primary btn">New</a>
 <?php endif; ?>

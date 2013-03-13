@@ -6,38 +6,46 @@ return array(
     // Controllers in this module
     'controllers' => array(
         'invokables' => array(
-            'FileStorage\Controller\Document' => 'FileStorage\Controller\DocumentController'
+            'Document' => 'FileStorage\Controller\DocumentController'
         ),
     ),
 
     // Routes for this module
     'router' => array(
         'routes' => array(
-            // Documents
+           // Documents
             'document' => array(
                 'type' => 'Segment',
                 'options' => array(
-                   'route'    => '/document[/:action]',
+                   'route'    => '/document[/:action][/]',
                         'constraints' => array(
                             'action'=> '[a-zA-Z][a-zA-Z0-9_-]*',
-                        ),
+                    ),
                     'defaults' => array(
-                        'controller' => 'FileStorage\Controller\Document',
+                        'controller' => 'Document',
                         'action'     => 'index',
                     ),
                 ),
             ),
             // Download
-            'download'  => array(
+            'download' => array(
                 'type' => 'Segment',
                 'options' => array(
-                   'route'    => '/download[/:id]',
-                        'constraints' => array(
-                            'action'=> '[0-9]+',
-                        ),
+                    'route'    => '/download[/:id][/]',
                     'defaults' => array(
-                        'controller' => 'FileStorage\Controller\Document',
+                        'controller' => 'Document',
                         'action'     => 'download',
+                    ),
+                ),
+            ),
+            // Delete a document
+            'delete' => array(
+                'type' => 'Segment',
+                'options' => array(
+                    'route'    => '/delete[/:id][/]',
+                    'defaults' => array(
+                        'controller' => 'Document',
+                        'action'     => 'delete',
                     ),
                 ),
             ),

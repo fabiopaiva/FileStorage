@@ -68,6 +68,9 @@ class DocumentController extends AbstractActionController
         return $paginator;
     }
     
+    /**
+     * Download of a document
+     */   
     public function downloadAction() 
     {
         $id = (int) $this->params()->fromRoute('id');
@@ -78,8 +81,31 @@ class DocumentController extends AbstractActionController
 
         return $document->download($this->getResponse());
     }
-             
     
+    /**
+     * Remove a document through your id
+     */             
+    public function deleteAction()
+    {
+        $id = (int) $this->params()->fromRoute('id');
+        
+         $document = $this->getEntityManager()
+            ->getRepository('FileStorage\Entity\Document')
+            ->find($id);
+
+        if ($document != null) {
+            $this->getEntityManager()->remove($document);
+            $this->getEntityManager()->flush();
+        }
+        
+        return $this->redirect()->toRoute('document');
+    }
+             
+    /**
+     * Store a file into database.
+     *
+     * @return array
+     */
     public function createAction()
     {
         $form = new DocumentForm();
