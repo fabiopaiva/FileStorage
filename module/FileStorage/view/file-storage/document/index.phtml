@@ -18,7 +18,7 @@
 				            <td><?php echo $document->getId(); ?></td>
 				            <td><?php echo $document->getName(); ?></td>
 				            <td>
-				                <a href="<?php echo $this->url('document', array(
+				                <a href="<?php echo $this->url('download', array(
                                         'action'=>'download', 
                                         'id' => $document->getId()
                                 ));?>">Download</a>

@@ -76,7 +76,7 @@ class DocumentController extends AbstractActionController
             ->getRepository('FileStorage\Entity\Document')
             ->find($id);
 
-        return $document->download();
+        return $document->download($this->getResponse());
     }
              
     

@@ -233,9 +233,8 @@ class Document implements InputFilterAwareInterface
      *
      * @return Zend\Http\PhpEnvironment\Response
      */
-    public function download()
+    public function download($response)
     {
-        $response = new \Zend\Http\PhpEnvironment\Response();
         $response->setContent($this->getContent());
 
         $headers = $response->getHeaders();
