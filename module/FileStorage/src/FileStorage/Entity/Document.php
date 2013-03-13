@@ -54,41 +54,41 @@ class Document implements InputFilterAwareInterface
     protected $inputFilter;
     
     /**
-	 * @param 	array	$data
-	 * @return	Document
-	 */
-	public function __construct($data = null)
-	{
-		$this->exchangeArray($data);
-		
-		return $this;
-	}
-	
-	/**
-	 * Preenche automaticamente essa model com os dados
-	 * vindos do formulário
-	 */
-	public function exchangeArray($data)
-	{
-	    if ($data != null) {
-			foreach ($data as $attribute => $value) {
-				if (! property_exists($this, $attribute)) {
-					continue;
-				}
-				$this->$attribute = $value;
-			}
-		}
-	}
-	
-	/**
-	 * Retorna este objeto em forma de array
-	 *
-	 * @return array
-	 */
-	public function toArray()
-	{
-	    return get_object_vars($this);
-	}        
+     * @param   array   $data
+     * @return  Document
+     */
+    public function __construct($data = null)
+    {
+        $this->exchangeArray($data);
+        
+        return $this;
+    }
+    
+    /**
+     * Preenche automaticamente essa model com os dados
+     * vindos do formulário
+     */
+    public function exchangeArray($data)
+    {
+        if ($data != null) {
+            foreach ($data as $attribute => $value) {
+                if (! property_exists($this, $attribute)) {
+                    continue;
+                }
+                $this->$attribute = $value;
+            }
+        }
+    }
+    
+    /**
+     * Retorna este objeto em forma de array
+     *
+     * @return array
+     */
+    public function toArray()
+    {
+        return get_object_vars($this);
+    }        
     /**
      * @param InputFilterInterface
      * @throws \Exception
