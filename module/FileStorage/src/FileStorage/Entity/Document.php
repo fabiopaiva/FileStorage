@@ -231,7 +231,8 @@ class Document implements InputFilterAwareInterface
     /**
      * This method is used to download of this file
      *
-     * @return Zend\Http\PhpEnvironment\Response
+     * @param  \Zend\Http\PhpEnvironment\Response
+     * @return \Zend\Http\PhpEnvironment\Response
      */
     public function download($response)
     {

@@ -520,11 +520,11 @@ class Document implements InputFilterAwareInterface
     /**
      * This method is used to download of this file
      *
-     * @return Zend\Http\PhpEnvironment\Response
+     * @param  \Zend\Http\PhpEnvironment\Response
+     * @return \Zend\Http\PhpEnvironment\Response
      */
-    public function download()
+    public function download($response)
     {
-        $response = new \Zend\Http\PhpEnvironment\Response();
         $response->setContent($this->getContent());
 
         $headers = $response->getHeaders();
@@ -660,7 +660,7 @@ class DocumentController extends AbstractActionController
             ->getRepository('FileStorage\Entity\Document')
             ->find($id);
 
-        return $document->download();
+        return $document->download($this->getResponse());
     }
              
     
@@ -749,7 +749,7 @@ echo $this->form()->closeTag();
 				            <td><?php echo $document->getId(); ?></td>
 				            <td><?php echo $document->getName(); ?></td>
 				            <td>
-				                <a href="<?php echo $this->url('document', array(
+				                <a href="<?php echo $this->url('download', array(
                                         'action'=>'download', 
                                         'id' => $document->getId()
                                 ));?>">Download</a>
