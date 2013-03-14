@@ -13,7 +13,7 @@ return array(
     // Routes for this module
     'router' => array(
         'routes' => array(
-           // Documents
+            // Documents
             'document' => array(
                 'type' => 'Segment',
                 'options' => array(

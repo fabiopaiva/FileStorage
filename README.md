@@ -750,14 +750,23 @@ $form->setAttribute(
 ); 
 
 $form->prepare();
+?>
 
-echo $this->form()->openTag($form);
+<div class="well">
+    <?php echo $this->form()->openTag($form); ?>
 
-echo $this->formRow($form->get('content'));
+    <div class="row-fluid">
+        <div class="span4">
+            <?php echo $this->formRow($form->get('content')); ?>
+        </div>
+    </div>
+</div>      
 
-echo $this->formSubmit($form->get('submit'));
-
-echo $this->form()->closeTag();
+<div class="form-actions">
+    <?php echo $this->formSubmit($form->get('submit')); ?>
+</div>       
+<?php echo $this->formRow($form->get('id')); ?>
+<?php echo $this->form()->closeTag(); ?>
 ```
 
 ## FileStorage/view/file-storage/index.phtml

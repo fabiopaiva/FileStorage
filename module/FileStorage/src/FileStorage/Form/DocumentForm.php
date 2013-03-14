@@ -29,6 +29,7 @@ class DocumentForm extends Form
                 'type'  => 'submit',
                 'value' => 'Upload',
                 'id' => 'submitbutton',
+                'class' => 'btn-large btn-primary',
             ),
         ));
     }
