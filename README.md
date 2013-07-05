@@ -31,8 +31,7 @@ sudo git clone git@github.com:zendframework/ZendSkeletonApplication.git zf2-doct
 Acrescentar as depencencias referentes ao doctrine no arquivo:
 
 ```
-"doctrine/doctrine-orm-module": "dev-master",
-"doctrine/migrations": "dev-master"
+"doctrine/doctrine-orm-module": "0.*"
 ```
 
 Desta forma, o arquivo, ficará da seguinte maneira:
