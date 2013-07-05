@@ -49,7 +49,7 @@ Desta forma, o arquivo, ficará da seguinte maneira:
     "require": {
         "php": ">=5.3.3",
         "zendframework/zendframework": "dev-master",
-	"doctrine/doctrine-orm-module": "0.*"
+        "doctrine/doctrine-orm-module": "0.*"
     }
 }
 ```
