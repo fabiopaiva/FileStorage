@@ -22,7 +22,7 @@ class DocumentForm extends Fieldset implements InputFilterProviderInterface {
      * @param \Zend\ServiceManager\ServiceManager $sm
      * @param string $destinationFolder
      */
-    public function __construct($name, \Zend\ServiceManager\ServiceManager $sm, $destinationFolder = 'public/file-storage') {
+    public function __construct($name, \Zend\ServiceManager\ServiceManager $sm, $destinationFolder = 'public/fileStorage') {
         $this->sm = $sm;
         if (!is_writable($destinationFolder)) {
             throw new \Exception('Destination folder is not writable: ' . $destinationFolder);
