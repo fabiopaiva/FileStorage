@@ -35,7 +35,7 @@ class DocumentForm extends Fieldset implements InputFilterProviderInterface {
                     'name' => 'file',
                     'type' => 'file',
                     'options' => array(
-                        'label' => 'File'
+                        'label' => $sm->get('translator')->translate('File')
                     ),
                     'attributes' => array(
                         'class' => 'form-control input-sm'
