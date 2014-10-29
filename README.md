@@ -3,6 +3,11 @@
 
 ## Install
 
+### Composer
+
+    php composer.phar require "fabiopaiva/file-storage": "dev-master"
+### GIT
+
     cd vendor
     git clone https://github.com/fabiopaiva/FileStorage
 
