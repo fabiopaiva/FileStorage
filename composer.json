@@ -1,0 +1,30 @@
+{
+"name": "fabiopaiva/file-storage",
+"description": "DoctrineORM Entity to store files ZF2",
+"license": "MIT",
+"homepage": "https://github.com/fabiopaiva/FileStorage",
+"authors": [
+{
+"name": "Fábio Paiva",
+"email": "paiva.fabiofelipe@gmail.com",
+"homepage": "http://sigweb.net.br"
+},
+{
+"name": "Thiago Pelizoni",
+"email": "thiago.pelizoni@gmail.com",
+"homepage": "https://github.com/thiagopelizoni"
+}
+],
+"require": {
+"php": ">=5.3.3",
+"doctrine/doctrine-orm-module": ">=0.7.0"
+},
+"autoload": {
+"psr-0": {
+"FileStorage": "src/"
+},
+"classmap": [
+"./"
+]
+}
+}
